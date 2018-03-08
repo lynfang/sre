@@ -1,0 +1,184 @@
+AIzaSyDmEroKqe9v20_lEXF6ExhEsIZqSPCxxNM
+
+
+http://zone1.qiaofangyun.com/ssoLogin.do?companyName=zone1%E5%88%86%E5%8C%BA%E6%B5%8B%E8%AF%95%E5%85%AC%E5%8F%B8&empUuid=9999
+
+1206_V10_SSO
+
+yum install lrzsz  bash-completion -y
+
+
+export EDITOR=vim; 
+
+ hostnamectl --static set-hostname Linuxidc
+
+   
+ansible -i   host_list/zone_app.host  all  -k -s -u lynfang  -m  shell -a "ls -al /etc/nginx/conf/default*" 
+   
+   Asura!@#456
+
+
+
+
+192.168.16.120和192.168.16.161对应的sa密码
+UrwPT8@M%5j14usF
+   
+// lvextend 100%free
+lvextend -l +100%FREE /dev/domuvg/data
+
+lvextend -l +100%FREE /dev/vg0/lv0
+
+
+//以系统时间为基准，修改硬件时间
+
+[root@localhost ~]# hwclock --systohc <== sys（系统时间）to（写到）hc（Hard Clock）
+[root@localhost ~]# hwclock -w
+
+//以硬件时间为基准，修改系统时间
+
+[root@localhost ~]# hwclock --hctosys 
+[root@localhost ~]# hwclock -s
+
+
+// awk 常用 
+
+grep -h   "kafka"  *host  | grep -v "#"  | awk   'BEGIN { FS = "[ =]+" } ;   { print $3,$1}'
+awk '{dups[0]++} END{for (num in dups) {print num,dups[num]}}'
+awk '{a[$0]++}END{for(i in a){print  a[i],i}}'
+
+
+ // 清空注释与空行
+ grep -v "^ *#"  | sed -rn 'h;n;:a;H;n;$!ba;g;s/(\n){2,}/\n\n/g;p'
+
+
+// ansbile ui+
+
+ time rsync -avh /home/lynfang/test20170731/ template/ --delete ; chown -R dev_user1:dev_user  *
+ 
+ // rsync command
+ 
+ rsync -avz --delete --backup --backup-dir="backup_$(date +\%Y-\%m-\%d)" /source/path/ /dest/path
+
+ 
+//  mysql 复制出错
+SET GLOBAL SQL_SLAVE_SKIP_COUNTER = 1;    
+ 
+ // mysql user PRIVILEGES
+
+SHOW GRANTS FOR 'techonthenet'@'localhost';
+
+// ansible pam
+
+而且也可以在template或palybook中访问该数据:
+
+{{ ansible_local.preferences.general.asdf }}
+
+// redis create cluster 
+
+ redis-trib.rb create --replicas 1 192.168.2.50:7002 192.168.2.51:7002 192.168.2.52:7002 192.168.2.53:7002 192.168.2.54:7002 192.168.2.55:7002 
+
+ // 设置 window 环境变量
+ set Path=C:\Python27;C:\Python27\Lib\site-packages\django\bin;C:\Python27\Scripts;C:\ProgramData\Oracle\Java\javapath;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;C:\Program Files\TortoiseGit\bin;
+
+ 
+ // the way of use git command
+ 
+  git add 12313123
+   git commit -m " comment of "
+   git push -u origin master 
+ 
+// cd  D:\Program Files\JetBrains\PyCharm Community Edition 2017.2.2\helpers\pycharm\testdj;  python manage.py runserver 0.0.0.0:8000
+
+// npm install -g cnpm --registry=https://registry.npm.taobao.org
+
+// syslog-ng raw message
+
+
+
+// salt 常用操作
+rm -rf /etc/salt/pki/minion/
+more /etc/salt/minion_id
+ salt-call -l debug test.ping
+ 
+salt "SH-U-V10-LB-1.v10.uat.qiaofangyun.com" cmd.run 'uptime'  -l debug
+ grains.items  grains['osmajorrelease']  mem_total
+
+ salt.states.file.line
+ 
+systemctl service
+journalctl -u service-name.service
+systemctl list-unit-files
+
+//################################################ git 常用操作
+
+git clone http://lin.fang@gitlab.qiaofangyun.com/lin.fang/Qiaofang_config.git
+cd Qiaofang_config
+touch README.md
+git add README.md
+git commit -m "add README"
+git push -u origin master
+
+
+git merge origin/master；git pull origin master  ## 下载远程代码合并到本地代码
+
+git fetch ; git checkout origin/master -- host_list  ### 更新本地指定目录代码
+
+Existing folder
+
+cd existing_folder
+git init
+git remote add origin http://lin.fang@gitlab.qiaofangyun.com/lin.fang/qf_ansbile.git
+git add .
+git commit -m "Initial commit"
+
+
+
+## 上传指定的目录
+git add my-dir
+git commit . -m "Commiting"
+git push origin master
+
+### 更新本地代码
+git fetch --all
+git reset --hard origin/master
+
+
+ ### 更新本地指定目录代码
+git fetch ; git checkout origin/master -- host_list  
+ 
+ 
+ 
+cd existing_repo
+git remote add origin http://lin.fang@gitlab.qiaofangyun.com/lin.fang/Qiaofang_config.git
+git push -u origin --all
+git push -u origin --tags
+
+
+git clone http://salt:qf1234@gitlab.qiaofangyun.com/config/srv.git
+
+100.100.2.136 mirrors.cloud.aliyuncs.com
+
+
+
+#### 大硬盘分区
+parted /dev/sdb mklabel gpt
+parted -a optimal -- /dev/sdb mkpart primary xfs 1 -1
+
+### 根据匹配规则插入
+sed  '/nameserver 100.100.2.138/i\ nameserver 10.30.0.189' /etc/resolv.conf
+sed -i  '1 i\nameserver 10.30.0.189\n' /etc/resolv.conf
+
+echo "100.100.2.136 mirrors.cloud.aliyuncs.com" >> /etc/hosts
+
+## elasticsearch index 设置操作
+
+curl -XPOST http://10.10.20.74:9100/logstash-nginxlog-zone5-2018.03.08/_settings
+curl -XPUT http://10.10.20.74:9200/logstash-nginxlog-zone5-2018.03.08/_settings -d '{
+    "index.translog.durability": "request",
+    "index.translog.sync_interval": "120s",
+	"index.translog.durability": "async",
+    "index.translog.flush_threshold_size": "1024mb",
+    "index.translog.flush_threshold_period": "120m"
+}'
+
+http://10.10.20.74:9100/logstash-nginxlog-zone5-2018.03.08/_settings 
