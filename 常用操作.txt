@@ -20,7 +20,7 @@ ansible -i   host_list/zone_app.host  all  -k -s -u lynfang  -m  shell -a "ls -a
 
 
 
-192.168.16.120ºÍ192.168.16.161¶ÔÓ¦µÄsaÃÜÂë
+192.168.16.120ï¿½ï¿½192.168.16.161ï¿½ï¿½Ó¦ï¿½ï¿½saï¿½ï¿½ï¿½ï¿½
 UrwPT8@M%5j14usF
    
 // lvextend 100%free
@@ -29,25 +29,25 @@ lvextend -l +100%FREE /dev/domuvg/data
 lvextend -l +100%FREE /dev/vg0/lv0
 
 
-//ÒÔÏµÍ³Ê±¼äÎª»ù×¼£¬ÐÞ¸ÄÓ²¼þÊ±¼ä
+//ï¿½ï¿½ÏµÍ³Ê±ï¿½ï¿½Îªï¿½ï¿½×¼ï¿½ï¿½ï¿½Þ¸ï¿½Ó²ï¿½ï¿½Ê±ï¿½ï¿½
 
-[root@localhost ~]# hwclock --systohc <== sys£¨ÏµÍ³Ê±¼ä£©to£¨Ð´µ½£©hc£¨Hard Clock£©
+[root@localhost ~]# hwclock --systohc <== sysï¿½ï¿½ÏµÍ³Ê±ï¿½ä£©toï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½hcï¿½ï¿½Hard Clockï¿½ï¿½
 [root@localhost ~]# hwclock -w
 
-//ÒÔÓ²¼þÊ±¼äÎª»ù×¼£¬ÐÞ¸ÄÏµÍ³Ê±¼ä
+//ï¿½ï¿½Ó²ï¿½ï¿½Ê±ï¿½ï¿½Îªï¿½ï¿½×¼ï¿½ï¿½ï¿½Þ¸ï¿½ÏµÍ³Ê±ï¿½ï¿½
 
 [root@localhost ~]# hwclock --hctosys 
 [root@localhost ~]# hwclock -s
 
 
-// awk ³£ÓÃ 
+// awk ï¿½ï¿½ï¿½ï¿½ 
 
 grep -h   "kafka"  *host  | grep -v "#"  | awk   'BEGIN { FS = "[ =]+" } ;   { print $3,$1}'
 awk '{dups[0]++} END{for (num in dups) {print num,dups[num]}}'
 awk '{a[$0]++}END{for(i in a){print  a[i],i}}'
 
 
- // Çå¿Õ×¢ÊÍÓë¿ÕÐÐ
+ // ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  grep -v "^ *#"  | sed -rn 'h;n;:a;H;n;$!ba;g;s/(\n){2,}/\n\n/g;p'
 
 
@@ -60,7 +60,7 @@ awk '{a[$0]++}END{for(i in a){print  a[i],i}}'
  rsync -avz --delete --backup --backup-dir="backup_$(date +\%Y-\%m-\%d)" /source/path/ /dest/path
 
  
-//  mysql ¸´ÖÆ³ö´í
+//  mysql ï¿½ï¿½ï¿½Æ³ï¿½ï¿½ï¿½
 SET GLOBAL SQL_SLAVE_SKIP_COUNTER = 1;    
  
  // mysql user PRIVILEGES
@@ -69,7 +69,7 @@ SHOW GRANTS FOR 'techonthenet'@'localhost';
 
 // ansible pam
 
-¶øÇÒÒ²¿ÉÒÔÔÚtemplate»òpalybookÖÐ·ÃÎÊ¸ÃÊý¾Ý:
+ï¿½ï¿½ï¿½ï¿½Ò²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½templateï¿½ï¿½palybookï¿½Ð·ï¿½ï¿½Ê¸ï¿½ï¿½ï¿½ï¿½ï¿½:
 
 {{ ansible_local.preferences.general.asdf }}
 
@@ -77,7 +77,7 @@ SHOW GRANTS FOR 'techonthenet'@'localhost';
 
  redis-trib.rb create --replicas 1 192.168.2.50:7002 192.168.2.51:7002 192.168.2.52:7002 192.168.2.53:7002 192.168.2.54:7002 192.168.2.55:7002 
 
- // ÉèÖÃ window »·¾³±äÁ¿
+ // ï¿½ï¿½ï¿½ï¿½ window ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  set Path=C:\Python27;C:\Python27\Lib\site-packages\django\bin;C:\Python27\Scripts;C:\ProgramData\Oracle\Java\javapath;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;C:\Program Files\TortoiseGit\bin;
 
  
@@ -95,7 +95,7 @@ SHOW GRANTS FOR 'techonthenet'@'localhost';
 
 
 
-// salt ³£ÓÃ²Ù×÷
+// salt ï¿½ï¿½ï¿½Ã²ï¿½ï¿½ï¿½
 rm -rf /etc/salt/pki/minion/
 more /etc/salt/minion_id
  salt-call -l debug test.ping
@@ -109,7 +109,7 @@ systemctl service
 journalctl -u service-name.service
 systemctl list-unit-files
 
-//################################################ git ³£ÓÃ²Ù×÷
+//################################################ git ï¿½ï¿½ï¿½Ã²ï¿½ï¿½ï¿½
 
 git clone http://lin.fang@gitlab.qiaofangyun.com/lin.fang/Qiaofang_config.git
 cd Qiaofang_config
@@ -119,9 +119,9 @@ git commit -m "add README"
 git push -u origin master
 
 
-git merge origin/master£»git pull origin master  ## ÏÂÔØÔ¶³Ì´úÂëºÏ²¢µ½±¾µØ´úÂë
+git merge origin/masterï¿½ï¿½git pull origin master  ## ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½Ì´ï¿½ï¿½ï¿½Ï²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½ï¿½ï¿½
 
-git fetch ; git checkout origin/master -- host_list  ### ¸üÐÂ±¾µØÖ¸¶¨Ä¿Â¼´úÂë
+git fetch ; git checkout origin/master -- host_list  ### ï¿½ï¿½ï¿½Â±ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½Ä¿Â¼ï¿½ï¿½ï¿½ï¿½
 
 Existing folder
 
@@ -133,17 +133,17 @@ git commit -m "Initial commit"
 
 
 
-## ÉÏ´«Ö¸¶¨µÄÄ¿Â¼
+## ï¿½Ï´ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½Ä¿Â¼
 git add my-dir
 git commit . -m "Commiting"
 git push origin master
 
-### ¸üÐÂ±¾µØ´úÂë
+### ï¿½ï¿½ï¿½Â±ï¿½ï¿½Ø´ï¿½ï¿½ï¿½
 git fetch --all
 git reset --hard origin/master
 
 
- ### ¸üÐÂ±¾µØÖ¸¶¨Ä¿Â¼´úÂë
+ ### ï¿½ï¿½ï¿½Â±ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½Ä¿Â¼ï¿½ï¿½ï¿½ï¿½
 git fetch ; git checkout origin/master -- host_list  
  
  
@@ -160,17 +160,17 @@ git clone http://salt:qf1234@gitlab.qiaofangyun.com/config/srv.git
 
 
 
-#### ´óÓ²ÅÌ·ÖÇø
+#### ï¿½ï¿½Ó²ï¿½Ì·ï¿½ï¿½ï¿½
 parted /dev/sdb mklabel gpt
 parted -a optimal -- /dev/sdb mkpart primary xfs 1 -1
 
-### ¸ù¾ÝÆ¥Åä¹æÔò²åÈë
+### ï¿½ï¿½ï¿½ï¿½Æ¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 sed  '/nameserver 100.100.2.138/i\ nameserver 10.30.0.189' /etc/resolv.conf
 sed -i  '1 i\nameserver 10.30.0.189\n' /etc/resolv.conf
 
 echo "100.100.2.136 mirrors.cloud.aliyuncs.com" >> /etc/hosts
 
-## elasticsearch index ÉèÖÃ²Ù×÷
+## elasticsearch index ï¿½ï¿½ï¿½Ã²ï¿½ï¿½ï¿½
 
 curl -XPOST http://10.10.20.74:9100/logstash-nginxlog-zone5-2018.03.08/_settings
 curl -XPUT http://10.10.20.74:9200/logstash-nginxlog-zone5-2018.03.08/_settings -d '{
@@ -182,3 +182,8 @@ curl -XPUT http://10.10.20.74:9200/logstash-nginxlog-zone5-2018.03.08/_settings 
 }'
 
 http://10.10.20.74:9100/logstash-nginxlog-zone5-2018.03.08/_settings 
+
+
+curl -XGET http://10.10.20.74:9200/logstash-nginxlog-zone3-2018.03.09/_settings
+
+curl -XGET http://10.10.20.74:9200/logstash-nginxlog-zone5-2018.03.09/_settings
