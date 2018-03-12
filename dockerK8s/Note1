@@ -1,0 +1,62 @@
+
+docker 常用命令
+环境信息
+容器生命周期
+镜像仓库和镜像管理
+容器运维
+容器资源
+
+docker 
+
+
+
+namespace : 资源隔离 cgroups：资源限制
+
+
+######################################################
+#######      namespace 实现隔离的方法：
+######################################################
+
+1 namespace api ： clone(),setns(),unshare().
+2 uts namespace : 隔离主机名和域名
+3 ipc namespace ： 信号量，消息队列和共享内存 使不在同一IPC namespace 的进程彼此不可见
+4 PID namespace： 树形结构 (child namespace;parent namespace) 父节点能够看见子节点的进程并通过信号方式影响子进程,反之不可以
+              -  每个pid namespace 第一个进程‘pid’ 类似init 
+              - 重新挂载proc 可以锁定 进程： mount -t proc proc /proc 
+              - 在root namespace 可以看到所有的进程,并递归所有子节点
+              - 在docker 容器中bash 进程为最优先启动 (具有资源监控和回收)
+              - pid namespace 中init进程拥有信号屏蔽；忽略其他进程的动作（只有父进程的SIGKILL和SIGSTOP除外）
+              - pid namespace 不会被修改 ；其他程序依赖视其为常量
+
+5 mount namespace：通过隔离文件系统挂载点来隔离文件系统 ## mount propagation  传播事件
+              -  共享关系，从属关系( share relationship ; slave relationship)
+              -  共享挂载，从属挂载， 共享挂载/从属挂载, 私有挂载,不可绑定挂载
+
+6 network namespace：主要提供网络设备,IPV4/6协议栈,ip路由表,防火墙,/proc/net 目录,/sys/class/net 目录,套接字(socket) 等
+              -   一个物理网络设备最多存在一个network namespace 中 ,通过创建veth pair(双向) 在不同的namespace 之间创建通道来通信
+              -   网络设备默认分配在root namespace ; 如果有多块物理网卡可以分配到指定的namespace.当namespace被释放,namespace中网络设备会直接返回到root namespace 而非父namespace;
+              
+7 user namespace: 普通用户进程通过clone() 创建新的进程在新的user namespace中可以拥有不同的用户和用户组              
+              - user namespace 创建时第一个进程拥有全部权限在该namespace (在外部的权限没有改变)
+              - linux 使用capacity：超级用户相关的高级权限划分为不同的单元   docker 同时使用 user namespace和 capacity 增强安全性     
+总结
+      -  没有完全隔离linux资源:   selinux,cgroups, /sys , /proc/sys,  /dev/sd* 等
+
+
+
+
+######################################################
+#######      cgroups 资源控制：
+######################################################
+      
+
+特点    cgroups就是内核附加在程序上的hook钩子 对程序运行时资源限制和追踪 本质是是一个文件系统 需要挂载使用
+
+   -  API以伪文件系统的出现 用户态程序可以通过文件操作cgroups 
+   -  可以操作线程  用户可以创建和销毁cgroup
+   -  接口统一
+   - 默认与父任务在同一cgroup 
+
+作用 ：  资源限制; 优先级分配 ;  资源统计 ;  任务控制;
+
+

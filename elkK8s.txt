@@ -7,3 +7,10 @@ curl -XPUT http://10.10.20.74:9200/logstash-nginxlog-zone5-2018.03.08/_settings 
     "index.refresh_interval": "120s"
    
 }'
+
+
+
+
+
+
+

@@ -1,0 +1,44 @@
+
+######################################################
+#######      Docker 的基本架构：
+######################################################
+
+docker 是松耦合模式   
+
+
+--           volume                    docker daemon                        image managent
+
+--           volumedriver              execdriver     network graphdriver        image registry
+
+--                                      libcontainer   libnetwork         
+
+
+--  [linux kernel]    namespace  cgroup
+
+
+
+
+######################################################
+#######      Docker daemon：
+######################################################
+
+
+client 模式和 daemon 模式
+
+client 模式: 命令调用 daemon 参数
+
+
+
+docker daemon 启动初始化过程 
+
+  - api server 配置和初始化
+  - daemon 对象创建和初始化
+      -  Docker 容器的配置信息
+      -  检测系统支持以及用户权限
+      -  配置工作路径
+      - 配置docker 需要的文件环境
+      - 加载配置grapdriver
+      - 创建docker网络
+      - 创建并初始化镜像数据库
+      - 创建容器管理驱动
+      - 检测dns和加载以及有的docker
