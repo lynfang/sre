@@ -34,11 +34,31 @@ docker daemon 启动初始化过程
   - api server 配置和初始化
   - daemon 对象创建和初始化
       -  Docker 容器的配置信息
-      -  检测系统支持以及用户权限
-      -  配置工作路径
+      -  检测系统支持以及用户权限  配置工作路径
       - 配置docker 需要的文件环境
+          - 创建容器配置文件目录 /var/lib/docker/containers
+          - 配置graphdriver 用来完成docker 镜像管理的底层驱动
+          - 配置镜像目录 img 
       - 加载配置grapdriver
-      - 创建docker网络
+      - 创建docker网络 初始化 execdriver 
       - 创建并初始化镜像数据库
       - 创建容器管理驱动
       - 检测dns和加载以及有的docker
+
+
+
+execdriver libcontainer 的工作  原理
+
+
+
+
+docker daemon 与 容器的通讯
+
+docker daemon 为父进程 容器进程为子进程 父进程克隆出子进程 但是依然共享内存 如何让子进程感知内存的数据写入
+    - 发生信号 signal      麻烦
+    - 对内存轮询 poll memory    低效
+    - socket通讯    网络隔离不可行
+    - 文件和文件描述符  利用管道 pipe
+
+
+

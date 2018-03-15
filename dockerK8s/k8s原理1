@@ -1,0 +1,66 @@
+Kubernetes 是一个管理跨主机容器化的系统 引入了专门对容器分组管理的pod 从而创建了一套将非容器应用平滑迁移到容器的机制
+
+
+pod： 包含容器和卷  是k8s 作业的基本单元
+
+pod与容器的关系：
+  - pod的资源决定了可以有多少容器
+  - label 是工作在pod 上
+  -  ip 是配置给 pod 的
+  - 哪怕是一个容器 k8s 也会分配给一个pod
+
+pod 中的容器：
+  - 共享ip
+  - 共享 volume 
+  - 共享 ipc,uts namespace (linux 宿主机级别) 
+  - 可以通过localhost访问pod中的另外的容器
+
+
+
+label ： label 属性是一组绑定到kubernetes对象上的键/值对 可以修改和删除 但是一般不用来作为系统内部的唯一标识  label 并不保证唯一性
+
+
+k8s api 支持两种 label selector 查询：
+    - 基于值相等的查询条件
+    - 基于子集的查询条件
+
+pod 启动一个网络容器 来 实现 pod 中的容器的内外网络通讯
+
+
+pod 状态切换：  pending running successed failed unkown
+
+
+replication controller  : 
+    -  维护它控制的pod 的数量 修改副本数
+    -  通过 pod 模板中的 labels 来控制
+
+replication controller 主要功能 :
+    -  重调度
+    -  弹性伸缩
+    -  灰度发布   创建新的rep contronller 实现
+    -  多版本release 跟踪
+
+
+
+service： 由一个ip地址和 lalel 组成 ip地址与service 的生命周期一样 不再改变
+    -  spec.selector 是可选项 目的是为了 访问外部数据库 或者 外部namespace 的service等应用
+
+
+service 原理： Kube-proxy 负责管理service, 维护通讯( 默认模式为iptable) 
+
+
+service 自发现：
+    -  环境变量方式 : 创建时添加到service 的环境变量到pod
+    -  dns 模式 : k8s的dns 组件 
+          dns模式的问题：
+             - dns ttl 缓存问题
+             - 系统负载高
+
+
+service 外部访问的可路由设计( 默认情况service为cluster ip,不能访问外网 )
+     方法 ：
+      - NodePort 
+      - loadbalancer ： 外部提供lb 需要定义 spec.loadbalancerIP
+      - external IP：
+
+
