@@ -47,6 +47,7 @@ service： 由一个ip地址和 lalel 组成 ip地址与service 的生命周期�
 
 
 service 原理： Kube-proxy 负责管理service, 维护通讯( 默认模式为iptable) 
+    - kube-proxy和 service 可以在不同的宿主机上
 
 
 service 自发现：
