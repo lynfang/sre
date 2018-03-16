@@ -71,3 +71,9 @@ service json配置文件参数 ：
     - selector  label selector 信息 用来 匹配后端pod
     - clusterIP  service 入口的地址
 
+
+
+##################################
+###########Deployment:
+##################################
+

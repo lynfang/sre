@@ -86,3 +86,81 @@ spec:
             memory: 100Mi
         ports:
           - containerPort: 80
+
+
+
+
+#### 线上 service 
+{
+  "kind": "Service",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "system",
+    "namespace": "devenv",
+    "selfLink": "/api/v1/namespaces/devenv/services/system",
+    "uid": "cdcaddc6-f8e8-11e7-9bf3-00505688fafe",
+    "resourceVersion": "7210991",
+    "creationTimestamp": "2018-01-14T05:07:22Z",
+    "labels": {
+      "java-app": "system"
+    }
+  },
+  "spec": {
+    "ports": [
+      {
+        "protocol": "TCP",
+        "port": 8080,
+        "targetPort": 8080,
+        "nodePort": 9156
+      }
+    ],
+    "selector": {
+      "java-app": "system"
+    },
+    "clusterIP": "10.254.72.241",
+    "type": "NodePort",
+    "sessionAffinity": "None"
+  },
+  "status": {
+    "loadBalancer": {}
+  }
+}           
+
+
+
+
+
+{
+    "apiVersion": "extensions/v1beta1",
+    "kind": "Deployment",
+    "metadata": {
+        name: test-Deployment
+        namespace: test-by-lyn
+    },
+    "spec": {
+        "replicas":3,
+        "template": {
+            "metadata": {
+                "labels": {
+                    "name":"test-app"
+                }
+            },
+            "spec":{
+                "containers": [
+                    {
+                        "name":"test-app",
+                        "image":"registry.qiaofangyun.com/uat/qf-useraccount-bff-facade:1.3.2",
+                        "ports":[
+                            {
+                                "containerPort": 80
+                            }
+                        ]
+                    }
+                ]
+
+            }
+        }
+      }
+
+
+}
