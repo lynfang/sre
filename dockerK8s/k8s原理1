@@ -48,6 +48,7 @@ service： 由一个ip地址和 lalel 组成 ip地址与service 的生命周期�
 
 service 原理： Kube-proxy 负责管理service, 维护通讯( 默认模式为iptable) 
     - kube-proxy和 service 可以在不同的宿主机上
+    - k8s 为service 分配一个唯一的clusterIP
 
 
 service 自发现：
@@ -64,4 +65,9 @@ service 外部访问的可路由设计( 默认情况service为cluster ip,不能�
       - loadbalancer ： 外部提供lb 需要定义 spec.loadbalancerIP
       - external IP：
 
+
+service json配置文件参数 ：
+    - ports 对外暴露的端口信息
+    - selector  label selector 信息 用来 匹配后端pod
+    - clusterIP  service 入口的地址
 

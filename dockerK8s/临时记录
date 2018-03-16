@@ -28,3 +28,61 @@
     }
 
 }
+
+
+###########  service ################
+
+{
+  "kind":"Service",
+  "apiVersion":"v1",
+  "metadata":{
+      "name":"customerintegration-service",
+      "namespace":"test-by-lyn",
+      "labels": {
+          "name": "service-customerintegration"
+      }
+  } , 
+    "spec":{
+        "selector":{
+            "name":"service-customerintegration"
+
+
+
+        },
+        "ports": [
+            { "port":8001 }
+
+           
+        ]
+
+    }
+
+}
+
+
+###########  replication set ################
+
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: replicaset
+  namespace: test-by-lyn
+
+spec:
+  replicas: 3
+  selector:
+    name: replicaset
+  template:
+    metadata:
+      labels:
+        name: replicaset
+    spec:
+      containers:
+      - name: replicaset
+        image:  registry.qiaofangyun.com/uat/qf-useraccount-bff-facade:1.3.2
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+          - containerPort: 80
