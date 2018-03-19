@@ -1,0 +1,5 @@
+###  按在deployment 历史记录回滚
+    - get history info of deployment: 
+        kubectl  rollout history deployment/test-deployment
+    - running specify deploment:
+        kubectl rollout undo deployment/test-deployment  --to-version=2
