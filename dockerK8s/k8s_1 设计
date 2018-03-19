@@ -82,3 +82,53 @@ service json配置文件参数 ：
         kubectl  rollout history deployment/test-deployment
     - running specify deploment:
         kubectl rollout undo deployment/test-deployment  --to-version=2
+
+
+
+##################################
+###########   Daemonset  :
+##################################
+
+Daemonset : 指定部署 pod 与 node 的关系. 
+    - Daemonset 通过pod selector 来找到对应pod
+    - 默认Daemonset 会在所有node上创建pod.如果需要指定的node运行 通过Daemonset 配置文件的 .spec.template.spec.nodeSelector 指定
+    - 默认pod 是通过schedule 来调度的.如果使用了Daemonset  scheduler 会自动忽略这些pod
+    - Daemonset 不支持更新 只能删除重建
+
+
+##################################
+###########   ConfigMap  :
+##################################
+
+
+ConfigMap： 将配置从应用中解耦处理
+    创建configmap：
+    kubectl -n test-by-lyn create configmap game-config --from-file=test1_configmap     ## 根据文件
+    kubectl -n test-by-lyn create configmap game-config-2 --from-file=game-special-key=configmap1/game.r ## 创建map只是包含某个 key/values
+
+
+    调用方式：
+        - 通过环境变量调用  env[].valueFrom.configMapKeyRef.
+        - 设置命令参数
+        - volume plugin   volume.configmap.
+
+
+##################################
+###########   Job  : 
+##################################
+
+
+Job : k8s 中的计划任务管理  
+    non-parellel job   : pod完成工作退出 job完成
+    parallel job ：.spec.completions  .spec.parallelism
+
+
+##################################
+###########   HPA  : 
+##################################
+
+horizontal Pod Autoscaler  :  自动伸缩 水平扩展
+    工作机制： 操作 replication controller , replicaSet , Deployment 的pod  根据观察的cpu使用量与用户期望来比较作出 增减 实例数量的决策 目前用heaper 来检测cpu使用量
+    决策机制：HPA 会比较 实际cpu使用率 与 .spec.cpuUtilization-Percentage  通过调节副本的数量使2个值数值接近 
+
+

@@ -1,0 +1,57 @@
+K8S 整体架构:
+    master 节点
+        - APISERVER
+        - scheduler   pod -- node 关系维护
+        - contronller manager  负责控制资源( 比如 replication,node )
+    node 节点
+        - kubelet  用来管理pod 的agent 
+        - kube-proxy  将service的流量转发到 endpoint
+
+
+
+##################################
+###########   API server  :
+##################################        
+
+总体而言由两部分构成 http/https服务和一些功能性的插件 ( cloud provider,  admission contronl )
+    - 对外提供restful的管理接口,支持对k8s 的资源对象 ( pod, service, rep.contronller node ) 等的各种操作
+    - 配置k8s的资源对象,并将对象的信息存储在etcd
+    - 提供可以定制的功能性插件
+    - 系统log收集功能 /log API
+    - 可视化的API
+
+ API server 的启动过程:  .......................
+
+
+
+ API server 对etcd 的封装 ： .......................
+
+
+
+API server  如何保证API 操作的原子性： 
+    resourceVersion : 客户端可以通过它来判断目标是否更新过
+
+
+
+
+##################################
+###########   scheduler  :
+##################################      
+
+ scheduler 数据采集：    K8S 没有消息系统来实现组件内的高效通信 scheduler 需要定时想apiserver 获取数据 导致压力大 scheduler 使用缓存数据
+    - 简单缓存 缓存所有
+    - 先进先出的队列
+
+scheduler 调度算法    
+
+
+
+##################################
+###########   contronller manager  :
+##################################     
+
+
+
+启动过程:
+
+服务器端点控制器: ( endpoint contronl ): 负责维护endpoint 以及其对应service的关系 会周期性的检查
