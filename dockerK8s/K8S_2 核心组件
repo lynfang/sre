@@ -54,4 +54,58 @@ scheduler 调度算法
 
 启动过程:
 
-服务器端点控制器: ( endpoint contronl ): 负责维护endpoint 以及其对应service的关系 会周期性的检查
+服务器端点控制器: ( endpoint contronller ): 负责维护endpoint 以及其对应service的关系 会周期性的检查
+    - 维护两个缓存池 serviceStore用来存储service  podStore 用来存储pod
+
+副本控制器   ( replication contronller ):  保证rep.contronl 管理的pod 的期望副本数与实际的pod 数量一致
+
+垃圾回收控制器 ( gc contronller):  回收 是指将系统处于终于状态的pod删除
+     gc contronller 维护了一个缓存池podStore 用来存储终止状态的(  非 penging,running,unkown ) 的pod 并使用reflector 使用list 和watch 机制监听apiserver 对podstore 进行更新
+
+
+节点控制器 ( node contronller )     
+    如果 kubelet 没有按时推送 该 工作节点的状态 将状态修改了 unkown
+
+资源控制器 (  resource quota contronller )    
+    工作在namespace 层面
+
+
+
+
+
+##################################
+###########   kubelet  :
+##################################     
+K8S 最重要的组件 负责和管理 这台主机上的 所有容器 . 本质上 可以归结于pod 的状态 ( status )和 它的期望值  (  spec )一致 
+
+-  启动过程：
+    需要启动的主要进程是kubeletServer ( 包括 kubelet的属性  接入runtime容器  等等 )
+
+- kebelet 与 cdvisor 交互
+
+
+- kebelet 垃圾回收机制
+
+- kebelet 同步工作节点状态
+
+
+
+
+##################################
+###########   kube-proxy   :
+##################################    
+
+kube-proxy 
+    提供服务发现与反向代理 支持 TCP 与 UDP , 
+
+-  启动过程    
+- proxier    为kub-proxy 的主要服务  lb只是负责执行负载均衡算法来选择POD, 默认情况下 proxier 绑定在bindaddress  并根据etcd上service对象的数据变化来更新宿主机的防火墙规则
+    - userspace 
+    - iptable
+
+
+
+
+##################################
+###########   K8s 核心组件协助流程  :
+##################################    
