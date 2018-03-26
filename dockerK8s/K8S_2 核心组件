@@ -2,7 +2,7 @@ K8S 整体架构:
     master 节点
         - APISERVER
         - scheduler   pod -- node 关系维护
-        - contronller manager  负责控制资源( 比如 replication,node )
+        - contronller manager  负责控制资源( 比如 replication,node )lyn
     node 节点
         - kubelet  用来管理pod 的agent 
         - kube-proxy  将service的流量转发到 endpoint
@@ -115,3 +115,6 @@ kube-proxy
  - 创建 rep.contronller 流程
 
  - 创建 service  流程
+
+
+ 
