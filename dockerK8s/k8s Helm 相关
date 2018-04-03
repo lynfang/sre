@@ -1,0 +1,18 @@
+使用Helm 在k8s 安装套件
+
+-  install helm 
+-  给helm配置阿里云镜像：
+    helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.7.2 --stable-repo-url https://kubernetes.oss-cn-hangzhou.aliyuncs.com/charts  
+    ## 可选 --service-account  tiller
+
+-  创建tiller 授权
+    kubectl create serviceaccount --namespace kube-system tiller
+    kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
+    kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
+
+
+
+
+
+
+helm install -n my-spinnaker1 stable/spinnaker -f values.yaml --timeout 3600  --version 0.3.5 --namespace spinnaker
