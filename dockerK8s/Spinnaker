@@ -1,0 +1,20 @@
+
+
+Deck：面向用户 UI 界面组件，提供直观简介的操作界面，可视化操作发布部署流程。
+API： 面向调用 API 组件，我们可以不使用提供的 UI，直接调用 API 操作，由它后台帮我们执行发布等任务。
+Gate：是 API 的网关组件，可以理解为代理，所有请求由其代理转发。
+Rosco：是构建 beta 镜像的组件，需要配置 Packer 组件使用。
+Orca：是核心流程引擎组件，用来管理流程。
+Igor：是用来集成其他 CI 系统组件，如 Jenkins 等一个组件。
+Echo：是通知系统组件，发送邮件等信息。
+Front50：是存储管理组件，需要配置 Redis、Cassandra 等组件使用。
+Cloud driver 是它用来适配不同的云平台的组件，比如 Kubernetes，Google、AWS EC2、Microsoft Azure 等。
+Fiat 是鉴权的组件，配置权限管理，支持 OAuth、SAML、LDAP、GitHub teams、Azure groups、 Google Groups 等。
+
+
+
+Server Group：服务组，是资源管理单位，识别可部署组件和基础配置设置，它并且关联了一个负载均衡器和安全组，当部署完毕后，服务组就相当于一组运行中的软件实例集合，如（VM 实例，Kubernetes pods）。
+Cluster：集群，由用户定义的，对服务组的逻辑分组。
+Applications：应用，是对集群的逻辑分组。
+Load Balancer：负载均衡，用于将外部网络流量重定向到服务组中的机器实例，还可以指定一系列规则，用来对服务组中的机器实例做健康监测。
+Security Group：安全组，定义了网络访问权限，由IP、端口和通信协议组成的防火墙规则。

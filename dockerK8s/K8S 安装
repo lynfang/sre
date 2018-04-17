@@ -1,0 +1,2 @@
+
+kubeadm init --api-advertise-addresses=10.8.78.31 --external-etcd-endpoints=http://10.8.125.29:2379,http://10.8.104.16:2379,http://10.8.37.18:2379
