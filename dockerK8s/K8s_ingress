@@ -1,0 +1,5 @@
+Ingress 只有两大组件：Ingress Controller 和 Ingress
+
+
+kubectl create -f default-backend.yaml 
+#### https://github.com/kubernetes/contrib/blob/master/ingress/controllers/nginx/examples/default-backend.yaml
