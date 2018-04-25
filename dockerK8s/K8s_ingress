@@ -1,5 +1,11 @@
-Ingress 只有两大组件：Ingress Controller 和 Ingress
+反向代理负载均衡器
+反向代理负载均衡器通常使用nginx，部署方式可以选择 Replication Controller、Deployment、DaemonSet 等
 
+Ingress Controller
+Ingress Controller 通过连接api server，获取 service以及pod的信息，当得到这些变化信息后，Ingress Controller 再结合Ingress 生成配置，更新反向代理负载均衡器，达到服务发现的目的。
+
+Ingress
+Ingress 简单理解就是个规则定义；其本质是根据rules规则来将对应的host访问请求转发到k8s后端的services。从而实现整体的服务发现和负载均衡。
 
 kubectl create -f default-backend.yaml 
 #### https://github.com/kubernetes/contrib/blob/master/ingress/controllers/nginx/examples/default-backend.yaml
