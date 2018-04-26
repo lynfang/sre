@@ -9,3 +9,8 @@ kubeadm init --api-advertise-addresses=192.168.2.158 --external-etcd-endpoints=h
 
 
 kubectl get nodes --show-labels
+
+
+kubeadm token create  --print-join-command
+
+kubectl label node lc-ops-k8s-test-3 kubernetes.io/role=node2
