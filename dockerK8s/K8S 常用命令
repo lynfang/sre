@@ -5,3 +5,7 @@ https://www.cnblogs.com/caiwenhao/p/6196014.html
 
 
 kubeadm init --api-advertise-addresses=192.168.2.158 --external-etcd-endpoints=http://192.168.2.152:2379,http://192.168.2.153:2379,http://192.168.2.154:2379
+
+
+
+kubectl get nodes --show-labels
