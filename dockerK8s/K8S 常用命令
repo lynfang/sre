@@ -14,3 +14,8 @@ kubectl get nodes --show-labels
 kubeadm token create  --print-join-command
 
 kubectl label node lc-ops-k8s-test-3 kubernetes.io/role=node2
+
+
+
+kubectl taint nodes node_name key=value:NoSchedule
+##  不让目标node 接受 pod
