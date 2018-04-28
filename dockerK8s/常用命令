@@ -1,3 +1,0 @@
-新增image 到 regis:
-    登录： docker login registry-dt.qiaofangyun.com
-    打tag：docker tag kong registry-dt.qiaofangyun.com/dev/kong:latest
