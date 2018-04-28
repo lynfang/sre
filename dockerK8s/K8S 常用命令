@@ -23,3 +23,6 @@ VG=vg0
 DATA_SIZE=490G
 
 exec : docker-storage-setup 
+
+
+### ### 
