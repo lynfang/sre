@@ -1,0 +1,5 @@
+先部署linkerd 与 ingress
+
+
+ingress：
+  包括 defalt-backend nginx-ingress-controller  ( serviceaccount )
