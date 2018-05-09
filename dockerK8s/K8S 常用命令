@@ -31,3 +31,7 @@ kubectl create clusterrolebinding --user system:serviceaccount:kube-system:defau
 
 ### namerd ### 
 namerctl  dtab  delete  --base-url http://admin.namerd.svsmesh.com  internal 
+
+### kubectl  get  ip of svc ####
+
+kubectl --namespace=default get svc  -o jsonpath={.items[4].spec.clusterIP}

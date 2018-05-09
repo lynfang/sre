@@ -2,4 +2,8 @@
 
 
 ingress：
-  包括 defalt-backend nginx-ingress-controller  ( serviceaccount )
+  包括 defalt-backend nginx-ingress-controller  ( serviceaccount )  nginx-ingress-controll
+
+
+  linkerd:
+    
