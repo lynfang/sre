@@ -25,4 +25,9 @@ DATA_SIZE=490G
 exec : docker-storage-setup 
 
 
-### ### 
+###  权限 ### 
+
+kubectl create clusterrolebinding --user system:serviceaccount:kube-system:default kube-system-cluster-admin --clusterrole cluster-admin
+
+### namerd ### 
+namerctl  dtab  delete  --base-url http://admin.namerd.svsmesh.com  internal 
