@@ -6,7 +6,10 @@ kubectl get nodes --show-labels
 kubeadm token create  --print-join-command
 
 kubectl label node lc-ops-k8s-test-3 kubernetes.io/role=node2  ## add label for node
-kubectl label node lc-ops-k8s-test-3 kubernetes.io/master
+
+kubectl label node lc-ops-k8s-test-3 kubernetes.io/master=true
+kubectl label node gz-p-k8s192-etcd3   kubernetes.io/role=master 
+
 ##  不让目标node 接受 pod
 
 kubectl cordon  nodes node_name
