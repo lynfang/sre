@@ -6,9 +6,10 @@ kubectl get nodes --show-labels
 kubeadm token create  --print-join-command
 
 kubectl label node lc-ops-k8s-test-3 kubernetes.io/role=node2  ## add label for node
- 
-
+kubectl label node lc-ops-k8s-test-3 kubernetes.io/master
 ##  不让目标node 接受 pod
+
+kubectl cordon  nodes node_name
 
 kubectl taint nodes node_name key=value:NoSchedule
 
@@ -35,3 +36,16 @@ namerctl  dtab  delete  --base-url http://admin.namerd.svsmesh.com  internal
 ### kubectl  get  ip of svc ####
 
 kubectl --namespace=default get svc  -o jsonpath={.items[4].spec.clusterIP}
+
+
+
+### get role  ====  serviceaccount  
+
+ kubectl get clusterrolebindings -o json | jq -r '
+  .items[] | 
+  select(
+    .subjects // [] | .[] | 
+    [.kind,.namespace,.name] == ["ServiceAccount","kube-system","kubernetes-dashboard"]
+  ) |
+  .metadata.name'
+
