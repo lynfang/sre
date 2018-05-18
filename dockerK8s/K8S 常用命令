@@ -10,6 +10,8 @@ kubectl label node lc-ops-k8s-test-3 kubernetes.io/role=node2  ## add label for 
 kubectl label node lc-ops-k8s-test-3 kubernetes.io/master=true
 kubectl label node gz-p-k8s192-etcd3   kubernetes.io/role=master 
 
+kubectl label node gz-p-k8s192-etcd3   kubernetes.io/role=master 
+
 ##  不让目标node 接受 pod
 
 kubectl cordon  nodes node_name
@@ -51,4 +53,10 @@ kubectl --namespace=default get svc  -o jsonpath={.items[4].spec.clusterIP}
     [.kind,.namespace,.name] == ["ServiceAccount","kube-system","kubernetes-dashboard"]
   ) |
   .metadata.name'
+
+
+
+###  添加仓库的认证
+kubectl create secret docker-registry harborlogin  \
+--namespace=ccuat --docker-server=registry.qiaofangyun.com --docker-username=opsharbor --docker-password=Qiaofang123 --docker-email=opsharbor@placeholder.com
 
