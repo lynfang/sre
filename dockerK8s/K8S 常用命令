@@ -58,5 +58,9 @@ kubectl --namespace=default get svc  -o jsonpath={.items[4].spec.clusterIP}
 
 ###  添加仓库的认证
 kubectl create secret docker-registry harborlogin  \
---namespace=ccuat --docker-server=registry.qiaofangyun.com --docker-username=opsharbor --docker-password=Qiaofang123 --docker-email=opsharbor@placeholder.com
+--namespace=cc --docker-server=registry.qiaofangyun.com --docker-username=opsharbor --docker-password=Qiaofang123 --docker-email=opsharbor@placeholder.com
 
+
+###
+kubectl -n  monitor  create configmap alertmanager-templates --from-file=alertmanager-templates -o json --d 
+ry-run | kubectl -n monitor apply -f -       
