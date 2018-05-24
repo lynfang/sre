@@ -61,6 +61,16 @@ kubectl create secret docker-registry harborlogin  \
 --namespace=cc --docker-server=registry.qiaofangyun.com --docker-username=opsharbor --docker-password=Qiaofang123 --docker-email=opsharbor@placeholder.com
 
 
-###
+###  kill  pod  by force
+
+export ETCDCTL_API=3
+for i in $(kubectl get pods -n internal | grep Terminating  | awk '{print $1}');do etcdctl del /registry/pods/internal/$i;done 
+
+
+
+
 kubectl -n  monitor  create configmap alertmanager-templates --from-file=alertmanager-templates -o json --d 
 ry-run | kubectl -n monitor apply -f -       
+
+
+
