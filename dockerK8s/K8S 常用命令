@@ -63,14 +63,13 @@ kubectl create secret docker-registry harborlogin  \
 
 ###  kill  pod  by force
 
-export ETCDCTL_API=3
-for i in $(kubectl get pods -n internal | grep Terminating  | awk '{print $1}');do etcdctl del /registry/pods/internal/$i;done 
+export ETCDCTL_API=3;
+for i in $(kubectl get pods -n monitor | grep Terminating  | awk '{print $1}');do etcdctl del /registry/pods/monitor/$i;done 
 
 
 
 
-kubectl -n  monitor  create configmap alertmanager-templates --from-file=alertmanager-templates -o json --d 
-ry-run | kubectl -n monitor apply -f -       
+kubectl -n  monitor  create configmap alertmanager-templates --from-file=alertmanager-templates -o json --dry-run | kubectl -n monitor apply -f -       
 
 
 
