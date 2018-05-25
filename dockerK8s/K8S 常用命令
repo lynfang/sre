@@ -67,6 +67,9 @@ export ETCDCTL_API=3;
 for i in $(kubectl get pods -n monitor | grep Terminating  | awk '{print $1}');do etcdctl del /registry/pods/monitor/$i;done 
 
 
+#### cp file in docker contain
+kubectl cp testenv/commonservice-4135265854-0bg4j:/home/logs/logback/qf-common-service/app.log /tmp/
+
 
 
 kubectl -n  monitor  create configmap alertmanager-templates --from-file=alertmanager-templates -o json --dry-run | kubectl -n monitor apply -f -       
