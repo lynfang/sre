@@ -63,8 +63,9 @@ kubectl create secret docker-registry harborlogin  \
 
 ###  kill  pod  by force
 
+namespace=
 export ETCDCTL_API=3;
-for i in $(kubectl get pods -n internal | grep Terminating  | awk '{print $1}');do etcdctl del /registry/pods/internal/$i;done 
+for i in $(kubectl get pods -n $namespace | grep Terminating  | awk '{print $1}');do etcdctl del /registry/pods/$namespace/$i;done 
 
 
 #### cp file in docker contain
