@@ -79,8 +79,6 @@ kubectl -n  monitor  create configmap alertmanager-templates --from-file=alertma
 ####  get pod ip
 kubectl describe pod  operationcenterfront-686bdc76c5-m4pk6 -n devenv    | grep IP | sed -E 's/IP:[[:space:]]+//'
 
-{"mem":1493538,"mem.free":1187937,"processors":4,"instance.uptime":58130427,"uptime":58169348,"systemload.average":0.38,"heap.committed":1359360,"heap.init":1032192,"heap.used":171422,"heap":1864192,"nonheap.committed":136896,"nonheap.init":2496,"nonheap.used":134178,"nonheap":0,"threads.peak":246,"threads.daemon":234,"threads.totalStarted":263,"threads":246,"classes":15027,"classes.loaded":15027,"classes.unloaded":0,"gc.ps_scavenge.count":56,"gc.ps_scavenge.time":957,"gc.ps_marksweep.count":3,"gc.ps_marksweep.time":319,"gauge.servo.response.metrics":1.0,"gauge.servo.response.customer.searchcustomersimple":1171.0,"normalized.servo.rest.totaltime":0.0,"normalized.servo.rest.count":0.0,"gauge.servo.rest.min":0.0,"gauge.servo.rest.max":0.0,"gauge.servo.response.info":1.0,"gauge.servo.response.customer.listcustomerbyuuidssimple":12.0,"httpsessions.max":-1,"httpsessions.active":0}
-
 
 
 
